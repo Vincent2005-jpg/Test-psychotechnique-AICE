@@ -2,53 +2,79 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mon Test Psychotechnique</title>
-<!-- On utilise un outil qui transforme le texte en quiz automatiquement -->
-<script src="https://cdn.jsdelivr.net/npm/scripted-quiz@1/dist/scripted-quiz.min.js"></script>
+<!-- Un style propre pour que ce soit joli -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+<style>
+.question { margin-bottom: 30px; padding: 15px; border-radius: 8px; background-color: #f9f9f9; }
+.resultat { font-weight: bold; font-size: 1.2em; color: #0076d6; margin-top: 20px; }
+label { display: block; margin: 10px 0; cursor: pointer; }
+button { margin-top: 15px; width: 100%; }
+</style>
 </head>
 <body>
 
 <h1>🧠 Test Psychotechnique : Logique & Aptitudes</h1>
-<p>Répondez aux questions suivantes. Votre score s'affichera à la fin.</p>
+<p>Répondez aux questions, puis cliquez sur le bouton en bas pour voir votre score.</p>
 
-<div id="quiz">
-<!--
-C'est ici que vous écrivez vos questions !
-Mettez une astérisque (*) devant la bonne réponse.
--->
+<form id="quizForm">
 
+<!-- QUESTION 1 -->
+<div class="question">
 <h3>Question 1 : Logique numérique</h3>
 <p>Complétez la suite : 2 - 4 - 8 - 16 - ?</p>
-<radio>
-<option>20</option>
-<option>24</option>
-<option>*</option> <!-- La bonne réponse est 32 -->
-<option>64</option>
-</radio>
-
-<h3>Question 2 : Intrus verbal</h3>
-<p>Trouvez l'intrus parmi ces mots :</p>
-<radio>
-<option>Pomme</option>
-<option>Banane</option>
-<option>*</option> <!-- Carotte est un légume -->
-<option>Fraise</option>
-</radio>
-
-<h3>Question 3 : Suite logique</h3>
-<p>Si TOUS les chats sont des animaux, et que CERTAINS animaux sont noirs, alors :</p>
-<radio>
-<option>Tous les chats sont noirs</option>
-<option>*</option> <!-- Certains chats peuvent être noirs -->
-<option>Aucun chat n'est noir</option>
-</radio>
-
+<label><input type="radio" name="q1" value="faux"> 20</label>
+<label><input type="radio" name="q1" value="faux"> 24</label>
+<label><input type="radio" name="q1" value="vrai"> 32</label> <!-- Mettre value="vrai" sur la bonne réponse -->
+<label><input type="radio" name="q1" value="faux"> 64</label>
 </div>
 
+<!-- QUESTION 2 -->
+<div class="question">
+<h3>Question 2 : Intrus verbal</h3>
+<p>Trouvez l'intrus parmi ces mots :</p>
+<label><input type="radio" name="q2" value="faux"> Pomme</label>
+<label><input type="radio" name="q2" value="faux"> Banane</label>
+<label><input type="radio" name="q2" value="vrai"> Carotte</label>
+<label><input type="radio" name="q2" value="faux"> Fraise</label>
+</div>
+
+<!-- QUESTION 3 -->
+<div class="question">
+<h3>Question 3 : Suite logique</h3>
+<p>Si TOUS les chats sont des animaux, et que CERTAINS animaux sont noirs, alors :</p>
+<label><input type="radio" name="q3" value="faux"> Tous les chats sont noirs</label>
+<label><input type="radio" name="q3" value="vrai"> Certains chats peuvent être noirs</label>
+<label><input type="radio" name="q3" value="faux"> Aucun chat n'est noir</label>
+</div>
+
+<button type="button" onclick="calculerScore()">Valider mes réponses</button>
+</form>
+
+<div id="zoneResultat" class="resultat"></div>
+
+<!-- Le petit moteur qui calcule le score -->
 <script>
-// Ce petit script active le calcul des points
-new ScriptedQuiz(document.getElementById('quiz'));
+function calculerScore() {
+let score = 0;
+let totalQuestions = 3;
+let form = document.getElementById('quizForm');
+
+// On récupère toutes les réponses cochées
+let reponses = form.querySelectorAll('input[type="radio"]:checked');
+
+// On compte les bonnes réponses
+reponses.forEach(reponse => {
+if (reponse.value === 'vrai') {
+score++;
+}
+});
+
+// On affiche le résultat
+let zone = document.getElementById('zoneResultat');
+zone.innerHTML = `📊 Votre score est de : ${score} / ${totalQuestions}`;
+}
 </script>
 </body>
 </html>
