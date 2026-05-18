@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Mon Test Psychotechnique</title>
+<!-- On utilise un outil qui transforme le texte en quiz automatiquement -->
+<script src="https://cdn.jsdelivr.net/npm/scripted-quiz@1/dist/scripted-quiz.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+
+<h1>🧠 Test Psychotechnique : Logique & Aptitudes</h1>
+<p>Répondez aux questions suivantes. Votre score s'affichera à la fin.</p>
+
+<div id="quiz">
+<!--
+C'est ici que vous écrivez vos questions !
+Mettez une astérisque (*) devant la bonne réponse.
+-->
+
+<h3>Question 1 : Logique numérique</h3>
+<p>Complétez la suite : 2 - 4 - 8 - 16 - ?</p>
+<radio>
+<option>20</option>
+<option>24</option>
+<option>*</option> <!-- La bonne réponse est 32 -->
+<option>64</option>
+</radio>
+
+<h3>Question 2 : Intrus verbal</h3>
+<p>Trouvez l'intrus parmi ces mots :</p>
+<radio>
+<option>Pomme</option>
+<option>Banane</option>
+<option>*</option> <!-- Carotte est un légume -->
+<option>Fraise</option>
+</radio>
+
+<h3>Question 3 : Suite logique</h3>
+<p>Si TOUS les chats sont des animaux, et que CERTAINS animaux sont noirs, alors :</p>
+<radio>
+<option>Tous les chats sont noirs</option>
+<option>*</option> <!-- Certains chats peuvent être noirs -->
+<option>Aucun chat n'est noir</option>
+</radio>
+
+</div>
+
+<script>
+// Ce petit script active le calcul des points
+new ScriptedQuiz(document.getElementById('quiz'));
+</script>
+</body>
+</html>
